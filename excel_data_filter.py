@@ -39,11 +39,13 @@ def execute_single(file_path, name):
 	    pass
 	
 	try:
-		subprocess.run(f"cp {original_file_path.absolute()} {generated_file_path.absolute()}", shell = True, executable="/bin/bash")
+		print(original_file_path.absolute())
+		subprocess.run(f'cp "{original_file_path.absolute()}" {generated_file_path.absolute()}', shell = True, executable="/bin/bash")
 	except FileNotFoundError:
 		return ORIGINAL_FILE_NOT_FOUND
 		pass
 
+	print(generated_file_path)
 	new_wb = openpyxl.load_workbook(generated_file_path)
 	 
 	grace_sheet = new_wb.active
@@ -139,7 +141,3 @@ def window():
 	sys.exit(app.exec_())
 
 window()
-
-
-
-
